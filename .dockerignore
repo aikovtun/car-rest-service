@@ -1,0 +1,6 @@
+.git/
+.idea/
+./src/test
+./target/
+*.iml
+*.iws
