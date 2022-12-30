@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:14
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB_DATABASE
+    ports:
+      - 5432:5432
+    networks:
+      - restapi-network
+    restart: always
+  app:
+    container_name: rest
+    depends_on:
+      - postgres
+    env_file: ./.env
+    build:
+      context: .
+    ports:
+      - 5432:5432
+    networks:
+      - restapi-network
+    restart: always
+networks:
+  restapi-network:
+    name: restapi-network
+    driver: bridge
