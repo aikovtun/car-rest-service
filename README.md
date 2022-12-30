@@ -16,7 +16,19 @@
 <!-- ABOUT THE PROJECT -->
 ### About The Project
 ***
-This is my pet project Car Database :)
+This is my pet project :)  
+The following framework and libraries are used:
+- Spring boot
+- Spring MVC
+- Spring data
+- Spring security
+- OAuth 2.0
+- Querydsl
+- Flyway
+- ModelMapper
+- Lombok  
+
+App by default use PostgreSQL and can be deployed in docker.
 
 <!-- UML DIAGRAM -->
 ### Project UML class diagram
