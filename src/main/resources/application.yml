@@ -1,0 +1,45 @@
+auth0:
+  audience: https://car-rest-service.example.com
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    default: dev
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-tarantoga.us.auth0.com/
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:migration
+  datasource:
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 50
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/${DB_DATABASE}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/${DB_DATABASE}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui
+    operations-sorter: method
